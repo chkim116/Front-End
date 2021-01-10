@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
 
 const Container = styled.div`
@@ -13,7 +13,6 @@ const Container = styled.div`
     }
     scroll-behavior: smooth;
     border: 1px solid #dbdbdb;
-    background-color: #fafbfc;
 `;
 
 const Title = styled.div`
@@ -25,6 +24,12 @@ const Title = styled.div`
 `;
 
 const BoardBox = styled.div`
+    ${({ finishCheck }) =>
+        finishCheck &&
+        css`
+            opacity: 0.7;
+            text-decoration: line-through;
+        `}
     width: 760px;
     height: 130px;
     display: flex;
@@ -72,7 +77,6 @@ const BoardInfo = styled.div`
 
         &::before {
             content: "마감";
-            margin-top: 10px;
             width: 96%;
             height: 16px;
             font-size: ${(props) => props.theme.ss};
@@ -87,7 +91,6 @@ const BoardInfo = styled.div`
     }
     & > div:nth-child(2) {
         position: relative;
-        margin-top: 10px;
         &::before {
             content: "현재";
             width: 96%;
@@ -103,7 +106,6 @@ const BoardInfo = styled.div`
     }
     & > div:nth-child(3) {
         position: relative;
-        margin-top: 10px;
         &::before {
             content: "제한";
             width: 96%;
@@ -125,16 +127,16 @@ const Writer = styled.div`
     right: 0;
 `;
 
-const PartiPresenter = ({ ParticipatePosts }) => {
+const PartiPresenter = ({ myBoard }) => {
     return (
         <>
             <Title>참여 중 공동구매</Title>
             <Container>
-                {ParticipatePosts.length > 0 &&
-                    ParticipatePosts.map((board) => {
+                {myBoard?.length > 0 &&
+                    myBoard.map((board) => {
                         return (
                             <Link to={`/detail/${board.id}`}>
-                                <BoardBox>
+                                <BoardBox finishCheck={board.finishCheck}>
                                     <BoardTitle>
                                         <div>{board.title}</div>
                                     </BoardTitle>
@@ -142,7 +144,9 @@ const PartiPresenter = ({ ParticipatePosts }) => {
                                         <div>{board.deadline}</div>
                                         <div>{board.currentNumberOfPeople}</div>
                                         <div>{board.limitNumberOfPeople}</div>
-                                        <Writer>작성자: </Writer>
+                                        <Writer>
+                                            작성자: {board.owner.nickname}
+                                        </Writer>
                                     </BoardInfo>
                                 </BoardBox>
                             </Link>

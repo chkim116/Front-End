@@ -1,19 +1,24 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import BookMarkPresenter from "./BookMarkPresenter";
-import { useSelector } from "react-redux";
+import Axios from "axios";
 
 const BookMarkContainer = () => {
-    const bookMarkList = useSelector(
-        (state) => state.auth.userData.bookmarkPosts
-    );
-    const userNickName = useSelector((state) => state.auth.userData.nickname);
+    const [myBookmark, setMyBookmark] = useState();
 
-    return (
-        <BookMarkPresenter
-            bookMarkList={bookMarkList}
-            userNickName={userNickName}
-        />
-    );
+    useEffect(() => {
+        const getBookmark = async () => {
+            try {
+                await Axios.get("/mypage/bookmark").then((res) => {
+                    setMyBookmark(res.data);
+                });
+            } catch (err) {
+                console.log(err);
+            }
+        };
+        getBookmark();
+    }, []);
+
+    return <BookMarkPresenter myBookmark={myBookmark} />;
 };
 
 export default BookMarkContainer;
