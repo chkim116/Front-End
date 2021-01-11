@@ -9,7 +9,7 @@ const Container = styled.div`
     font-weight: 700;
     min-height: 70px;
     background-color: white;
-`;
+
 
 const Footer = () => {
     return <Container>&copy;{new Date().getFullYear()} GongGus</Container>;

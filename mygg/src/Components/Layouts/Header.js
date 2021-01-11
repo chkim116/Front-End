@@ -32,6 +32,7 @@ const HeaderContainer = styled.header`
     margin: 0 auto;
     width: 100%;
     height: 60px;
+<<<<<<< HEAD
     max-width: 1060px;
     z-index: 100;
     padding: 12px;
@@ -49,20 +50,36 @@ const Logo = styled.div`
         color: ${(props) => props.theme.black};
         text-decoration: none;
     }
+=======
+    max-width: 1024px;
+    z-index: 100;
+`;
+
+const Logo = styled.div`
+    font-size: 24px;
+    font-weight: bold;
+>>>>>>> 63e539c... header design
 `;
 
 const SearchBar = styled.form`
     display: flex;
     align-items: center;
+<<<<<<< HEAD
     background: ${(props) => props.theme.lightenBlack};
     justify-content: space-between;
     border-radius: 12px;
     padding: 0 4px;
     flex: 1;
+=======
+    background: #f5f8fa;
+    border-radius: 12px;
+    padding: 0 4px;
+>>>>>>> 63e539c... header design
     input {
         all: unset;
         padding: 6px;
         width: 240px;
+<<<<<<< HEAD
         text-align: center;
         flex: 1;
         &:focus {
@@ -83,6 +100,8 @@ const SearchBar = styled.form`
         &:hover {
             color: ${(props) => props.theme.lightenBlack};
         }
+=======
+>>>>>>> 63e539c... header design
     }
 `;
 
@@ -215,6 +234,7 @@ const Header = () => {
     return (
         <>
             <Container>
+<<<<<<< HEAD
                 <Snackbar
                     anchorOrigin={{
                         vertical: "top",
@@ -267,10 +287,17 @@ const Header = () => {
                             onChange={onChange}
                             placeholder="검색하세요"
                         />
+=======
+                <Nav>
+                    <Logo>GongGus</Logo>
+                    <SearchBar>
+                        <input type="text" placeholder="검색하세요.." />
+>>>>>>> 63e539c... header design
                         <button type="submit">
                             <AiOutlineSearch size={24} fill="#14171a" />
                         </button>
                     </SearchBar>
+<<<<<<< HEAD
                     {user ? (
                         <UserMenu>
                             <Link to="/write">
@@ -293,6 +320,12 @@ const Header = () => {
                         </Sign>
                     )}
                 </HeaderContainer>
+=======
+                    <Sign>
+                        <div onClick={onSignModal}>회원가입/로그인</div>
+                    </Sign>
+                </Nav>
+>>>>>>> 63e539c... header design
             </Container>
             {isSign && (
                 <AuthContainer onSignModal={onSignModal} isSign={isSign} />
