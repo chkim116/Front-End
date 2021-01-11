@@ -5,6 +5,9 @@ import theme from "Components/Theme";
 import { ThemeProvider } from "styled-components";
 import { getAuthRequest } from "modules/auth";
 import { useDispatch } from "react-redux";
+import Axios from "axios";
+
+Axios.defaults.baseURL = "https://api.gonggus.cf";
 
 function App() {
     const dispatch = useDispatch();
